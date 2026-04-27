@@ -35,3 +35,26 @@
 
 // HINT:
 // setInterval(functionName, 1000); will call functionName() every 1000 miliseconds.
+
+import { time, updateTime, saveTime, loadTime } from "./model.time.js";
+import { showDigital } from "./view.digital.js";
+import { showAnalagoue } from "./view.analagoue.js";
+
+function updateClock() {
+    updateTime();
+    showDigital(time);
+    showAnalagoue(time);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    setInterval(updateClock, 1000);
+
+    document.getElementById("saveBtn")
+        .addEventListener("click", saveTime);
+
+    loadTime();
+    showDigital(time);
+    showAnalagoue(time);
+
+});
